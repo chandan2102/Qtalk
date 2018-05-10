@@ -1,0 +1,147 @@
+*{
+	padding:0px;
+	margin:0px;
+}
+
+body{
+	background: url("images/rocky-shore.jpg") no-repeat center center fixed;
+    background-color: lightblue;
+    background-blend-mode: luminosity;
+  	background-size: cover;
+  	height: 100%;
+  	overflow: hidden;
+    font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif;
+}
+
+.slide{
+    opacity: .9;
+    width: 1080px;
+	height: 530px;
+	margin: 30px auto;
+
+}
+
+.leftc{
+    background-color: black;
+    opacity: .7;
+    width: 330px;
+    height: 530px;
+    display: inline-block;
+    vertical-align: top;
+    background-size: cover;
+}
+
+.rightc{
+    background-color: black;
+    opacity: .4;
+    width: 746px;
+    height: 530px;
+    display: inline-block;
+    vertical-align: top;
+    background-size: cover;
+}
+
+#chat, #recent{
+    width: 290px;
+    height: 50px;
+    display: inline-block;
+    margin: 20px 0px 0px 20px;
+}
+
+#chat:after {
+    content: "";
+    display: block;
+    width: 100%;
+    border-bottom: 1px solid white;
+    margin: 24px 0px 0px 0px;
+}
+
+#recentcount{
+    height: 20px;
+    width: 30px;
+    background-color: yellowgreen;
+    border-radius: 30%;
+    display: inline-block;
+    margin-left: 5px;
+    text-align: center;
+}
+
+#chatheads{
+    margin:10px;
+}
+
+.chatblock{
+    margin: 15px 0px 0px 0px;
+    position: relative;
+}
+.chatblock:after {
+    content: "";
+    display: block;
+    margin: 10px auto;
+    width: 100%;
+    border-bottom: 1px solid white;
+    opacity:0.5;
+}
+
+.profile{
+    width:30px;
+    border-radius: 50%;
+}
+
+.username{
+    color:white;
+    display: inline-block;
+}
+
+.status {
+    height: 10px;
+    width: 10px;
+    background-color: mediumspringgreen;
+    border-radius: 50%;
+    display: inline-block;
+    margin-left: 5px;
+}
+
+.timestamp{
+    color:white;
+    display: inline-block;
+    float:right;
+    opacity:0.5;
+}
+
+.lastchat{
+    color:white;
+    display: inline-block;
+    opacity:0.5;
+}
+
+.chatcount{
+    height: 20px;
+    width: 20px;
+    background-color: mediumspringgreen;
+    border-radius: 50%;
+    display: inline-block;
+    float:right;
+    text-align: center;
+    margin-top: 2px;
+}
+
+.more{
+    text-align: center;
+}
+
+#chatbox{
+    width: 706px;
+    height: 50px;
+    display: inline-block;
+    margin: 20px 0px 0px 20px;
+}
+
+#chatbox:after {
+    content: "";
+    display: block;
+    width: 100%;
+    border-bottom: 1px solid white;
+    margin: 24px 0px 0px 0px;
+}
+
