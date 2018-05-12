@@ -1,111 +1,54 @@
 <?php 
 
+include('dbconfig.php');
 
-if( isset($_GET['submit']) ){
+$uname = "";
+$pass = "";
+
+if(isset($_GET['submit'])){
     $uname = htmlentities($_GET['username']);
-    $pass = htmlentities($_GET['password']);
-    header('Location: chat.php');
-}
-else if (!empty($_GET['username']) && !empty($_GET['password'])){
+	$pass = htmlentities($_GET['password']);
+
+
+	//Querying from the database where username matches entered $Uname and password matches entered $pass	
+	$result = mysqli_query($con, "SELECT * FROM `users` WHERE username='$uname' AND password='$pass'");
+
+	//If the match is successful, we are counting the number of rows of the result given by the query
+	$count = mysqli_num_rows($result);
+
+	//The username and password combination must be unique, so, there should be only 1 row for the login to be successful
+	if($count == 1){
+
+		//If login is successful redirect to chat.php
+		header("Location: chat.php");
+		exit();
+	} else {
+
+		//Else give Invalid credentials! message
+		$loginerror = "Invalid credentials! Please try again.";
+	}
+
+} else if (!empty($_GET['username']) && !empty($_GET['password'])){
     $loginerror = "You must supply a username and password.";
 } else {
 	$loginerror = "Please enter uname & pwd!";
 }
 
 
-$hostname = "localhost";
-$username = "root";
-$password = "mypass";
-$database = "qtalk";
-
-
-$con = mysqli_connect($hostname,$username,$password,$database);
-$result = mysqli_query($con,"SELECT * FROM users");
-
-while($res = mysqli_fetch_assoc($result)){
-	
-/*	echo $res["firstname"];
-	echo "</br>";*/
-	
-}
-
-
-
 ?>
-<style>
 
-*{
-	padding:0px;
-	margin:0px;
-}
-
-body{
-	background: url("images/rocky-shore.jpg") no-repeat center center fixed;
-    background-color: lightblue;
-    background-blend-mode: luminosity;
-  	background-size: cover;
-  	height: 100%;
-  	overflow: hidden;
-    font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif;
-}
-
-.slide{
-    opacity: .9;
-    width: 1080px;
-	height: 530px;
-	margin: 30px auto;
-
-}
-
-#block{
-	margin: 10px auto;
-	width: 300px;
-	height: 300px;
-	border-radius: 2px;
-	background-color: dodgerblue;
-	text-align: center;
-	position: relative;
-}
-
-#frm{
-	width: 250px;
-    height: 200px;
-    border-radius: 2px;
-    background-color: white;
-    margin: 0 auto;
-    position: absolute;
-    top: 14%;
-    left: 9%;
-}
-
-#frm input{
-	margin-bottom: 10px;
-	border-radius: 2px;
-}
-
-#sub{
-	
-}
-
-.btns{
-	width:84px;
-}
-</style>
 <head>
 	<title>QTalk</title>
 	<link rel="icon" href="images/qt.png" type="image/png" sizes="16x16">
-	<script type="text/javascript">
-		function login(){
-			alert("QT");
-		}
-	</script>
+	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
+
 <body>
 	<div class="slide">
 		<div id="block">
 		<form id="frm" action="" method="get">
 			<h2>Dashboard</h2>
-			<div><?php echo $loginerror; ?></div>
+			<div id="alert"><?php echo $loginerror; ?></div>
 			<input type="text" name="username" id="username" placeholder="Username">
 			<input type="password" name="password" id="password" placeholder="Password">
 			<div id="sub">
