@@ -1,24 +1,14 @@
 <?php 
 
 
-if( isset($_GET['submit']) )
-{
+if( isset($_GET['submit']) ){
     $uname = htmlentities($_GET['username']);
     $pass = htmlentities($_GET['password']);
-/*    echo $uname;
-    echo "</br>";
-    echo $pass;*/
-    header('Location: /qtalk/chat.php');
+    header('Location: chat.php');
 }
-else if (!empty($_GET['username']) && !empty($_GET['password']))
-{
+else if (!empty($_GET['username']) && !empty($_GET['password'])){
     $loginerror = "You must supply a username and password.";
-}
-else
-{
-    /*echo '<script language="javascript">';
-	echo 'alert("Incorrect Username/Password!")';
-	echo '</script>';*/
+} else {
 	$loginerror = "Please enter uname & pwd!";
 }
 
