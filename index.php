@@ -1,5 +1,5 @@
 <?php 
-
+session_start();
 include('dbconfig.php');
 
 $uname = "";
@@ -19,7 +19,9 @@ if(isset($_GET['submit'])){
 	//The username and password combination must be unique, so, there should be only 1 row for the login to be successful
 	if($count == 1){
 
-		//If login is successful redirect to chat.php
+		//If login is successful set user session variable and redirect to chat.php
+		$_SESSION["username"] = $uname;
+		
 		header("Location: chat.php");
 		exit();
 	} else {
