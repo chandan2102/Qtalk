@@ -12,6 +12,7 @@ ini_set('date.timezone', 'UTC');
 
 $host_name  = "localhost";
 $user_name  = "root";
+// $password   = "scarysea";
 $password   = "mypass";
 $database   = "qtalk";
 
