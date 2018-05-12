@@ -2,9 +2,11 @@
 session_start();
 include('dbconfig.php');
 
-$msg_to = "";
 $uname = "";
 $uname = $_SESSION["username"];
+
+$msg_from = $uname;
+$msg_to = "";
 
 if(isset($_GET['to'])){
 	$msg_to = $_GET['to'];
@@ -168,6 +170,30 @@ if(isset($_POST['msgsend'])){
 				</div>
 
 				<div id="mainchatbox">
+
+					<?php
+					$line = true;
+					$resn = mysqli_query($con, "SELECT * FROM messages WHERE (msg_from, msg_to) IN (('$msg_from','$msg_to'), ('$msg_to','$msg_from'))");
+					// $resn = getMessages($msg_from, $msg_to, $purposeid);
+					while($rown = mysqli_fetch_assoc($resn)){
+
+						if($rown['msg_from'] != $msg_from){
+							if($rown['msg_read_to'] == "no"){
+								if($line){
+									echo "<div id='unline' style='border-bottom: 1px solid lightgrey; float:left; width: 100%; margin: 10px 0px; height:auto;'>unread messages</div>";
+									$line = false;
+								}
+
+							}
+						}
+
+						if($rown['msg_from'] == $msg_from){
+						?><div style="border: 1px solid orangered; text-align: left; padding: 5px 10px; width: 60%; height: auto; margin: 10px 5px; float: right;"><?php echo $rown['msg_body']; ?></div><br/><?php
+						}else{
+						?><div style="border: 1px solid lightgrey; text-align: left; padding: 5px 10px; width: 60%; height: auto; margin: 10px 5px; float: left;"><?php echo $rown['msg_body']; ?></div><?php
+						}
+					}
+					?>				
 				</div>
 
 				<div id="sender">
@@ -184,4 +210,21 @@ if(isset($_POST['msgsend'])){
 			</div>
 		</div>
 	</div>
+
+	
+	<?php
+		// if($rown['msg_from'] != $msg_from){
+		// 	$yes = "yes";
+		// 	$query = mysqli_query($con, "UPDATE messages SET msg_read_to='$yes' WHERE msg_to='$msg_from'");
+		// 	if($query){ }else{ echo "<script>console.log( 'Internal Error: Sorry! msgReadUp query not updated!' );</script>"; }
+		// }
+	?>
+
+	<!-- <script type="text/javascript">
+		(function (){	
+				var x = $('#unline').position();
+				document.getElementById('mainchatbox').scrollTop = document.getElementById('mainchatbox').scrollHeight;
+				document.getElementById('mainchatbox').scrollTop = x.top - 20;		
+		})();		
+	</script> -->
 </body>
