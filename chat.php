@@ -100,63 +100,6 @@ if(isset($_POST['msgsend'])){
 					}  // end of while loop
 					?>
 
-
-					<!-- <div class="chatblock">
-						<div style="width:40px;display: inline-block;">
-							<img class="profile" src="images\f1.jpg">
-						</div>
-						<div style="width:200px;display: inline-block;">
-							<h3 class="username">Melissa Davidson</h3>
-							<span class="status"></span>
-							<p class="lastchat">Hey, How have you been...</p>
-						</div>
-						<div style="width:50px;display: inline-block;">
-							<p class="timestamp" style="">03.42</p>
-							<span class="chatcount">4</span>
-						</div>	
-					</div>
-					<div class="chatblock">
-						<div style="width:40px;display: inline-block;">
-							<img class="profile" src="images\m1.jpg">
-						</div>
-						<div style="width:200px;display: inline-block;">
-							<h3 class="username">Steve Davidson</h3>
-							<span class="status"></span>
-							<p class="lastchat">Hey, How have you been...</p>
-						</div>
-						<div style="width:50px;display: inline-block;">
-							<p class="timestamp" style="">03.42</p>
-							<span class="chatcount">4</span>
-						</div>	
-					</div>
-					<div class="chatblock">
-						<div style="width:40px;display: inline-block;">
-							<img class="profile" src="images\f1.jpg">
-						</div>
-						<div style="width:200px;display: inline-block;">
-							<h3 class="username">Lauren Davidson</h3>
-							<span class="status"></span>
-							<p class="lastchat">Hey, How have you been...</p>
-						</div>
-						<div style="width:50px;display: inline-block;">
-							<p class="timestamp" style="">03.42</p>
-							<span class="chatcount">4</span>
-						</div>	
-					</div>
-					<div class="chatblock">
-						<div style="width:40px;display: inline-block;">
-							<img class="profile" src="images\m1.jpg">
-						</div>
-						<div style="width:200px;display: inline-block;">
-							<h3 class="username">Steve Davidson</h3>
-							<span class="status"></span>
-							<p class="lastchat">Hey, How have you been...</p>
-						</div>
-						<div style="width:50px;display: inline-block;">
-							<p class="timestamp" style="">03.42</p>
-							<span class="chatcount">4</span>
-						</div>	
-					</div> -->
 					<div class="more">
 						<img src="images\dots.png" style="width:20px;display: inline-block;">
 					</div>
@@ -213,18 +156,18 @@ if(isset($_POST['msgsend'])){
 
 	
 	<?php
-		// if($rown['msg_from'] != $msg_from){
-		// 	$yes = "yes";
-		// 	$query = mysqli_query($con, "UPDATE messages SET msg_read_to='$yes' WHERE msg_to='$msg_from'");
-		// 	if($query){ }else{ echo "<script>console.log( 'Internal Error: Sorry! msgReadUp query not updated!' );</script>"; }
-		// }
+		 if($rown['msg_from'] != $msg_from){
+		 	$yes = "yes";
+		 	$query = mysqli_query($con, "UPDATE messages SET msg_read_to='$yes' WHERE msg_to='$msg_from'");
+		 	if($query){ }else{ echo "<script>console.log( 'Internal Error: Sorry! msgReadUp query not updated!' );</script>"; }
+		 }
 	?>
 
-	<!-- <script type="text/javascript">
+	<script type="text/javascript">
 		(function (){	
 				var x = $('#unline').position();
 				document.getElementById('mainchatbox').scrollTop = document.getElementById('mainchatbox').scrollHeight;
 				document.getElementById('mainchatbox').scrollTop = x.top - 20;		
 		})();		
-	</script> -->
+	</script>
 </body>
