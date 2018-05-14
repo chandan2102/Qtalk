@@ -110,6 +110,7 @@ body{
     position:absolute;
     top: 320px;
     left: 84px;
+    display: none;
 }
 
 
@@ -129,6 +130,10 @@ input[type=text], input[type=password]{
 
 }
 
+#pwd{
+    border:1px solid red;
+}
+
 
 /* Styles for index.php - End */
 
@@ -138,7 +143,7 @@ input[type=text], input[type=password]{
 
 .leftc{
     background-color: black;
-    opacity: .7;
+    opacity: .8;
     width: 330px;
     height: 530px;
     display: inline-block;
@@ -148,7 +153,7 @@ input[type=text], input[type=password]{
 
 .rightc{
     background-color: black;
-    opacity: .4;
+    opacity: .6;
     width: 746px;
     height: 530px;
     display: inline-block;
@@ -269,12 +274,12 @@ input[type=text], input[type=password]{
 
 
 #sender{
-	width: 100%;
-	height: 55px;
-
-	background: white;
+	width: 90%;
+    height: 40px;
+    background: white;
+    margin: 0 auto;
     color: grey;
-    border-top: 1px solid grey;
+    border-top: 1px solid grey
 }
 
 #inparea{
@@ -290,15 +295,35 @@ input[type=text], input[type=password]{
 
 #mainchatbox{
 	width: 100%;
-	height: 400px;
+	height: 380px;
 
-	background: white;
-	background-image: linear-gradient(170deg, white 50%, whitesmoke 100%);
+	/*background: white;
+	background-image: linear-gradient(170deg, white 50%, whitesmoke 100%);*/
 
 	box-sizing: border-box;
 	padding: 1px;
 	margin: 0px auto;
 
-	overflow-y: scroll;
-	overflow-x: clip;
+	/*overflow-y: scroll;
+	overflow-x: clip;*/
 }
+
+/*.sChat{
+    border: 1px solid orangered;
+    text-align: left;
+    padding: 5px 10px;
+    width: 60%;
+    height: auto;
+    margin: 10px 5px;
+    float: right;
+}
+
+.rChat{
+    border: 1px solid lightgrey;
+    text-align: left;
+    padding: 5px 10px;
+    width: 60%;
+    height: auto;
+    margin: 10px 5px;
+    float: left;
+}*/

@@ -65,7 +65,6 @@ if(isset($_GET['register'])){
 		$res = mysqli_query($con, "INSERT INTO `users`(`firstname`, `lastname`, `username`, `email`, `password`) VALUES ('$fname', '$lname', '$unameN', '$email', '$passN')");
 
 		if($res){
-			$registererror = "Registration successful!";
 			$_SESSION["username"] = $unameN;
 			header("Location: chat.php");
 			exit();
@@ -85,17 +84,37 @@ if(isset($_GET['register'])){
 	<link rel="stylesheet" type="text/css" href="style.css">
 
 	<script type="text/javascript">
-		
+
 		function opnRegFrm(){
 			document.getElementById("block").style.display = "none";
 			document.getElementById("rblock").style.display = "block";
 		}
 
 		function closeRegFrm(){
+			document.getElementById("rfrm").reset();
+
 			document.getElementById("rblock").style.display = "none";
 			document.getElementById("block").style.display = "block";
 		}
 
+		function validityCheck(val){
+			var myPass = document.getElementById("pwd");
+			console.log("Value="+val);
+			var lowerCaseLetters = /[a-z]/g;
+			var upperCaseLetters = /[A-Z]/g;
+			var numbers = /[0-9]/g;
+			var spclCharacters = /[!@#$%^&*]/g;
+
+				if(val.match(lowerCaseLetters) && val.match(upperCaseLetters) && val.match(numbers) && val.match(spclCharacters) && val.length >= 8) {
+					document.getElementById("pwd").style.borderColor = "green";
+					document.getElementById("register").style.display = "block";
+					//document.getElementById('register').disabled =  "false";
+				}else{
+					document.getElementById("pwd").style.borderColor = "red";
+					document.getElementById("register").style.display = "none";
+					//document.getElementById('register').disabled =  "true";
+				}
+		}
 
 	</script>
 </head>
@@ -120,13 +139,13 @@ if(isset($_GET['register'])){
 			<form id="rfrm" action="" method="get" >
 				<h2>Registration</h2>
 				<div id="alertt"><?php echo $registererror; ?></div>
-				<input type="text" name="fname" id="fname" placeholder="First Name">
-				<input type="text" name="lname" id="lname" placeholder="Last Name">
-				<input type="text" name="uname" id="uname" placeholder="Username">
-				<input type="password" name="pwd" id="pwd" placeholder="Password">
-				<input type="text" name="email" id="email" placeholder="Email">
+				<input type="text" name="fname" id="fname" placeholder="First Name" required>
+				<input type="text" name="lname" id="lname" placeholder="Last Name" required>
+				<input type="text" name="uname" id="uname" placeholder="Username" required>
+				<input type="password" name="pwd" id="pwd" placeholder="Password" required onkeyup="validityCheck(this.value)" pattern="(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}" required title="Must contain at least one number, one uppercase and lowercase letter, one special character and at least 8 or more characters">
+				<input type="text" name="email" id="email" placeholder="Email" required>
 				<div id="sub">
-					<button class="btnsss" type="submit" name="register">Register</button>
+					<button class="btnsss" type="submit" id="register" name="register">Register</button>
 				</div>
 			</form>
 		</div>

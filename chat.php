@@ -46,13 +46,22 @@ if(isset($_POST['msgsend'])){
 		// body of the function
 
 		}());
+
+		function typing(){
+			document.getElementById("stat").style.visibility = "visible";
+		}
+
+		function notTyping(){
+			document.getElementById("stat").style.visibility = "hidden";
+		}
+
 	</script>
 </head>
 
 <body>
 	<div style="width: 97%; height: 2px; text-align: right; padding: 20px 10px;"><a href="logout.php">Logout</a></div>
 	<div class="slide">
-		<div style="margin: 0px auto;background: gray;width:1080px;display: inline-block;">
+		<div style="margin: 0px auto;background: none;width:1080px;display: inline-block;">
 			<div class="leftc">
 				<div id="chat">
 					<div style="width:30px;display: inline-block;"><img style="width:20px;" src="images\chat.png"></div>
@@ -131,22 +140,23 @@ if(isset($_POST['msgsend'])){
 						}
 
 						if($rown['msg_from'] == $msg_from){
-						?><div style="border: 1px solid orangered; text-align: left; padding: 5px 10px; width: 60%; height: auto; margin: 10px 5px; float: right;"><?php echo $rown['msg_body']; ?></div><br/><?php
+						?><div style="border-radius:2px;text-align: left;padding: 5px 10px;width: 60%;height: auto;margin: 5px 5px;float: right;color:white;background-color: dimgray;"><?php echo $rown['msg_body']; ?></div><br/><?php
 						}else{
-						?><div style="border: 1px solid lightgrey; text-align: left; padding: 5px 10px; width: 60%; height: auto; margin: 10px 5px; float: left;"><?php echo $rown['msg_body']; ?></div><?php
+						?><div style="border-radius:2px;text-align: left;padding: 5px 10px;width: 60%;height: auto;margin: 5px 5px;float: left;color:white;background-color: silver;"><?php echo $rown['msg_body']; ?></div><?php
 						}
 					}
 					?>				
 				</div>
-
+				<p id="stat" style="color:white; font-weight:bold; font-style:italic; margin: 0px 0px 8px 8px; visibility: hidden">Typing...</p>
 				<div id="sender">
 					<form action="" method="POST" autocomplete="off">
 					<div id="inparea">
-						<input type="text" name="msg" style="height: 100%; width: 100%; border-bottom: 1px solid whitesmoke; padding: 0px 5px; margin-top: 0px;" autocomplete="off" required>
+						<input type="text" name="msg" id="msg" onfocus="typing()" onblur="notTyping()" style="height: 100%; width: 100%; border-bottom: 1px solid whitesmoke; padding: 0px 5px; margin-top: 0px;" autocomplete="off" required>
 					</div>
 					<div style="display: inline-block; width: 20%;">
 						<!-- ##### SEAMLESS SENDING OF MESSAGES = ONCLICK CALL AJAX FUNCTION = W/OUT PAGE REFRESH ON EVERY SUBMIT --> 
-						<input type="submit" name="msgsend" style="width: 100%; height: 100%; border-radius: 0px; margin: 0px;" value="send">
+						<input type="submit" name="msgsend" style="width: 80%; height: 100%; border-radius: 0px; margin: 0px; background-color: Transparent;background-repeat: no-repeat;border: none;
+    cursor: pointer; color:black; font-weight:bold; float:right;" value="Send">
 					</div>
 					</form>
 				</div>
