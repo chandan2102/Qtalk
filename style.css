@@ -16,7 +16,7 @@ body{
 .slide{
     opacity: .9;
     width: 1080px;
-	height: 530px;
+	height: 550px;
 	margin: 30px auto;
 
 }
@@ -145,7 +145,7 @@ input[type=text], input[type=password]{
     background-color: black;
     opacity: .8;
     width: 330px;
-    height: 530px;
+    height: 550px;
     display: inline-block;
     vertical-align: top;
     background-size: cover;
@@ -155,7 +155,7 @@ input[type=text], input[type=password]{
     background-color: black;
     opacity: .6;
     width: 746px;
-    height: 530px;
+    height: 550px;
     display: inline-block;
     vertical-align: top;
     background-size: cover;
@@ -294,36 +294,76 @@ input[type=text], input[type=password]{
 }
 
 #mainchatbox{
-	width: 100%;
+	width: 92%;
 	height: 380px;
-
-	/*background: white;
-	background-image: linear-gradient(170deg, white 50%, whitesmoke 100%);*/
-
 	box-sizing: border-box;
 	padding: 1px;
 	margin: 0px auto;
-
-	/*overflow-y: scroll;
-	overflow-x: clip;*/
 }
 
-/*.sChat{
-    border: 1px solid orangered;
+#scrollElem{
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+    padding-right: 999px;
+    /*box-sizing: content-box;*/
+}
+
+.schat{
+    border-radius: 2px;
     text-align: left;
     padding: 5px 10px;
-    width: 60%;
+    width: 50%;
     height: auto;
-    margin: 10px 5px;
+    margin: 5px 5px;
     float: right;
+    color: white;
+    background-color: dimgray;
+    border-bottom-right-radius: 15%50px;
+    border-top-right-radius: 15%50px;
 }
 
 .rChat{
-    border: 1px solid lightgrey;
+    border-radius: 2px;
     text-align: left;
     padding: 5px 10px;
-    width: 60%;
+    width: 50%;
     height: auto;
-    margin: 10px 5px;
+    margin: 5px 5px;
     float: left;
-}*/
+    color: white;
+    background-color: slategrey;
+    border-bottom-left-radius: 15%50px;
+    border-top-left-radius: 15%50px;
+}
+
+#typeStat{
+    color: white;
+    font-weight: bold;
+    font-style: italic;
+    padding-left: 29px;
+    margin: 0px 0px 8px 8px;
+    visibility: hidden;
+}
+
+#msg{
+    height: 100%;
+    width: 100%;
+    border-bottom: 1px solid whitesmoke;
+    padding: 0px 5px;
+    margin-top: 0px;
+}
+
+#sendbtn{
+    width: 80%;
+    height: 100%;
+    border-radius: 0px;
+    margin: 0px;
+    background-color: Transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    color:black;
+    font-weight:bold;
+    float:right;
+}

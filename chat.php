@@ -48,18 +48,18 @@ if(isset($_POST['msgsend'])){
 		}());
 
 		function typing(){
-			document.getElementById("stat").style.visibility = "visible";
+			document.getElementById("typeStat").style.visibility = "visible";
 		}
 
 		function notTyping(){
-			document.getElementById("stat").style.visibility = "hidden";
+			document.getElementById("typeStat").style.visibility = "hidden";
 		}
 
 	</script>
 </head>
 
 <body>
-	<div style="width: 97%; height: 2px; text-align: right; padding: 20px 10px;"><a href="logout.php">Logout</a></div>
+	<div style="width: 97%; height: 2px; text-align: right; padding: 10px 10px;"><a href="logout.php">Logout</a></div>
 	<div class="slide">
 		<div style="margin: 0px auto;background: none;width:1080px;display: inline-block;">
 			<div class="leftc">
@@ -122,41 +122,41 @@ if(isset($_POST['msgsend'])){
 				</div>
 
 				<div id="mainchatbox">
+					<div id="scrollElem">
+						<?php
+						$line = true;
+						$resn = mysqli_query($con, "SELECT * FROM messages WHERE (msg_from, msg_to) IN (('$msg_from','$msg_to'), ('$msg_to','$msg_from'))");
+						// $resn = getMessages($msg_from, $msg_to, $purposeid);
+						while($rown = mysqli_fetch_assoc($resn)){
 
-					<?php
-					$line = true;
-					$resn = mysqli_query($con, "SELECT * FROM messages WHERE (msg_from, msg_to) IN (('$msg_from','$msg_to'), ('$msg_to','$msg_from'))");
-					// $resn = getMessages($msg_from, $msg_to, $purposeid);
-					while($rown = mysqli_fetch_assoc($resn)){
+							if($rown['msg_from'] != $msg_from){
+								if($rown['msg_read_to'] == "no"){
+									if($line){
+										echo "<div id='unline' style='border-bottom: 1px solid lightgrey; float:left; width: 100%; margin: 10px 0px; height:auto;'>unread messages</div>";
+										$line = false;
+									}
 
-						if($rown['msg_from'] != $msg_from){
-							if($rown['msg_read_to'] == "no"){
-								if($line){
-									echo "<div id='unline' style='border-bottom: 1px solid lightgrey; float:left; width: 100%; margin: 10px 0px; height:auto;'>unread messages</div>";
-									$line = false;
 								}
+							}
 
+							if($rown['msg_from'] == $msg_from){
+							?><div class="schat"><?php echo $rown['msg_body']; ?><img class="profile" src="images\m1.jpg" style="float:right;margin-right: -3px;"></div><br/><?php
+							}else{
+							?><div class="rchat"><img class="profile" src="images\m2.jpg" style="float:left;margin-left: -3px;margin-right: 10px;"><?php echo $rown['msg_body']; ?></div><?php
 							}
 						}
-
-						if($rown['msg_from'] == $msg_from){
-						?><div style="border-radius:2px;text-align: left;padding: 5px 10px;width: 60%;height: auto;margin: 5px 5px;float: right;color:white;background-color: dimgray;"><?php echo $rown['msg_body']; ?></div><br/><?php
-						}else{
-						?><div style="border-radius:2px;text-align: left;padding: 5px 10px;width: 60%;height: auto;margin: 5px 5px;float: left;color:white;background-color: silver;"><?php echo $rown['msg_body']; ?></div><?php
-						}
-					}
-					?>				
+						?>
+					</div>			
 				</div>
-				<p id="stat" style="color:white; font-weight:bold; font-style:italic; margin: 0px 0px 8px 8px; visibility: hidden">Typing...</p>
+				<br/><p id="typeStat"><img src="images\idots.png" style="width:30px;">&ensp;Typing...</p>
 				<div id="sender">
 					<form action="" method="POST" autocomplete="off">
 					<div id="inparea">
-						<input type="text" name="msg" id="msg" onfocus="typing()" onblur="notTyping()" style="height: 100%; width: 100%; border-bottom: 1px solid whitesmoke; padding: 0px 5px; margin-top: 0px;" autocomplete="off" required>
+						<input type="text" name="msg" id="msg" onfocus="typing()" onblur="notTyping()" autocomplete="off" required>
 					</div>
 					<div style="display: inline-block; width: 20%;">
 						<!-- ##### SEAMLESS SENDING OF MESSAGES = ONCLICK CALL AJAX FUNCTION = W/OUT PAGE REFRESH ON EVERY SUBMIT --> 
-						<input type="submit" name="msgsend" style="width: 80%; height: 100%; border-radius: 0px; margin: 0px; background-color: Transparent;background-repeat: no-repeat;border: none;
-    cursor: pointer; color:black; font-weight:bold; float:right;" value="Send">
+						<input type="submit" name="msgsend" id="sendbtn" value="Send">
 					</div>
 					</form>
 				</div>
