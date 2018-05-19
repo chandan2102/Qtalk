@@ -299,6 +299,9 @@ input[type=text], input[type=password]{
 	box-sizing: border-box;
 	padding: 1px;
 	margin: 0px auto;
+
+    /*overflow-y: scroll;
+    overflow-x: clip;*/
 }
 
 #scrollElem{

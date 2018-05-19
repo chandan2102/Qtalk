@@ -42,10 +42,10 @@ if(isset($_POST['msgsend'])){
 			$(arg).css("background", "#ededed33");
 		}
 
-		(function () {
-		// body of the function
-
-		}());
+		$(document).ready(function(){
+			var elem = document.getElementById('scrollElem');
+			elem.scrollTop = elem.scrollHeight;
+		});
 
 		function typing(){
 			document.getElementById("typeStat").style.visibility = "visible";
