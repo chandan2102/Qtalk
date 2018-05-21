@@ -97,7 +97,11 @@ if(isset($_POST['msgsend'])){
 							<div style="width:200px;display: inline-block;">
 								<h3 class="username"><?php echo $chatto; ?></h3>
 								<span class="status"></span>
-								<p class="lastchat">Hey, How have you been...</p>
+								<?php
+									$lastChat = mysqli_query ($con, "SELECT msg_body FROM messages WHERE msg_from = '$msg_from' AND msg_to = '$msg_to' ORDER BY id DESC LIMIT 1");
+									echo '<script type="text/javascript">alert("'.$lastChat.'")</script>';
+								?>
+								<p class="lastchat"><?php echo $lastChat; ?></p>
 							</div>
 							<div style="width:50px;display: inline-block;">
 								<p class="timestamp" style="">03.42</p>
@@ -140,9 +144,9 @@ if(isset($_POST['msgsend'])){
 							}
 
 							if($rown['msg_from'] == $msg_from){
-							?><div class="schat"><?php echo $rown['msg_body']; ?><img class="profile" src="images\m1.jpg" style="float:right;margin-right: -3px;"></div><br/><?php
+							?><div class="schat"><div style="width:90%;padding-left: 30px;"><?php echo $rown['msg_body']; ?><img class="profile" src="images\m1.jpg" style="float:right;margin-right: -3px;"></div></div><br/><?php
 							}else{
-							?><div class="rchat"><img class="profile" src="images\m2.jpg" style="float:left;margin-left: -3px;margin-right: 10px;"><?php echo $rown['msg_body']; ?></div><?php
+							?><div class="rchat"><img class="profile" src="images\m2.jpg" style="float:left;margin-left: -3px;margin-right: 10px;"><div style="width:90%;padding-left: 40px;"><?php echo $rown['msg_body']; ?></div></div><?php
 							}
 						}
 						?>

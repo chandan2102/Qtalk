@@ -322,8 +322,10 @@ input[type=text], input[type=password]{
     float: right;
     color: white;
     background-color: dimgray;
-    border-bottom-right-radius: 15%50px;
+    border-bottom-right-radius: 0%50px;
     border-top-right-radius: 15%50px;
+    border-bottom-left-radius: 15%50px;
+    border-top-left-radius: 15%50px;
 }
 
 .rChat{
@@ -336,8 +338,10 @@ input[type=text], input[type=password]{
     float: left;
     color: white;
     background-color: slategrey;
+    border-bottom-right-radius: 15%50px;
+    border-top-right-radius: 15%50px;
     border-bottom-left-radius: 15%50px;
-    border-top-left-radius: 15%50px;
+    border-top-left-radius: 0%50px;
 }
 
 #typeStat{
