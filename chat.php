@@ -99,7 +99,8 @@ if(isset($_POST['msgsend'])){
 								<span class="status"></span>
 								<?php
 									$lastChat = mysqli_query ($con, "SELECT msg_body FROM messages WHERE msg_from = '$msg_from' AND msg_to = '$msg_to' ORDER BY id DESC LIMIT 1");
-									echo '<script type="text/javascript">alert("'.$lastChat.'")</script>';
+									$lastChatRow = mysqli_fetch_assoc($lastChat);
+									echo '<script type="text/javascript">alert("'.$lastChatRow['msg_body'].'")</script>';
 								?>
 								<p class="lastchat"><?php echo $lastChat; ?></p>
 							</div>
