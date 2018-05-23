@@ -88,7 +88,19 @@ if(isset($_POST['msgsend'])){
 					$result = mysqli_query($con, "SELECT * FROM `chats` WHERE '$uname' IN(ini_user, rec_user) ORDER BY id DESC");
 
 					while($res = mysqli_fetch_assoc($result)){
-						if($res['ini_user'] == $uname){ $chatto =  $res['rec_user'];} else { $chatto = $res['ini_user'];} 
+						if($res['ini_user'] == $uname){
+						 	$chatto =  $res['rec_user'];
+						 	$chatfrom = $res['ini_user']; 
+						} else {
+							$chatto = $res['ini_user'];
+							$chatfrom = $res['rec_user'];
+						} 
+
+						$lastChat = mysqli_query ($con, "SELECT * FROM messages WHERE msg_from = '$chatfrom' AND msg_to = '$chatto' ORDER BY id DESC LIMIT 1");
+									$lastChatRow = mysqli_fetch_assoc($lastChat);
+									$noti = substr($lastChatRow['msg_body'], 0, 25);
+									$noti .= "...";
+
 					?>
 						<div class="chatblock" onclick="window.location.href='chat.php?to=<?php echo $chatto; ?>'">
 							<div style="width:40px;display: inline-block;">
@@ -97,12 +109,7 @@ if(isset($_POST['msgsend'])){
 							<div style="width:200px;display: inline-block;">
 								<h3 class="username"><?php echo $chatto; ?></h3>
 								<span class="status"></span>
-								<?php
-									$lastChat = mysqli_query ($con, "SELECT msg_body FROM messages WHERE msg_from = '$msg_from' AND msg_to = '$msg_to' ORDER BY id DESC LIMIT 1");
-									$lastChatRow = mysqli_fetch_assoc($lastChat);
-									echo '<script type="text/javascript">alert("'.$lastChatRow['msg_body'].'")</script>';
-								?>
-								<p class="lastchat"><?php echo $lastChat; ?></p>
+								<p class="lastchat"><?php echo $noti; ?></p>
 							</div>
 							<div style="width:50px;display: inline-block;">
 								<p class="timestamp" style="">03.42</p>
